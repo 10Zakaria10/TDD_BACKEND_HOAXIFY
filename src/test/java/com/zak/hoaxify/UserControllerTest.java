@@ -58,6 +58,14 @@ public class UserControllerTest {
         Assertions.assertThat(response.getBody().getMessage()).isNotNull();
     }
 
+    @Test
+    public void postUser_WhenUserIsValid_passwordIsHashedInDB(){
+        User user = createValidUser();
+        testRestTemplate.postForEntity(API_1_0_USERS, user, Object.class);
+        User inDb = userRepository.findAll().get(0);
+        Assertions.assertThat(inDb.getPassword()).isNotEqualTo(user.getPassword());
+    }
+
     private User createValidUser() {
         User user = new User();
         user.setUsername("test-user");

@@ -24,6 +24,6 @@ public class User {
     private String displayName;
     @NotNull
     @Size(min = 8 , max = 255)
-    @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).*$")
+    @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).*$" , message = "{custom.validation.user.password.pattern.message}")
     private String password;
 }

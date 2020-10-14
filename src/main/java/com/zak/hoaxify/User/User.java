@@ -2,9 +2,7 @@ package com.zak.hoaxify.User;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -18,6 +16,7 @@ public class User {
     private long id;
     @NotNull
     @Size(min = 4 , max = 255)
+    @UniqueUsername
     private String username;
     @NotNull
     @Size(min = 4 , max = 255)

@@ -1,5 +1,6 @@
 package com.zak.hoaxify.User;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 
 import javax.persistence.*;

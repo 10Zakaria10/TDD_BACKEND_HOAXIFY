@@ -1,21 +1,14 @@
 package com.zak.hoaxify.User;
 
-import com.zak.hoaxify.Error.ApiError;
 import com.zak.hoaxify.Error.SamirException;
 import com.zak.hoaxify.shared.GenericResponse;
-import com.zak.hoaxify.shared.MyExceptionHandler;
+import com.zak.hoaxify.Error.MyExceptionHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.http.HttpStatus;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
-import org.springframework.web.bind.MethodArgumentNotValidException;
-import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.Map;

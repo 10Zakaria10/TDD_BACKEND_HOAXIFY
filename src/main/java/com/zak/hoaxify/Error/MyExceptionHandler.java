@@ -1,4 +1,4 @@
-package com.zak.hoaxify.shared;
+package com.zak.hoaxify.Error;
 
 import com.zak.hoaxify.Error.ApiError;
 import com.zak.hoaxify.Error.SamirException;

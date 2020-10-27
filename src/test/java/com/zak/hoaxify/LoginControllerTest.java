@@ -1,7 +1,11 @@
 package com.zak.hoaxify;
 
 import com.zak.hoaxify.Error.ApiError;
+import com.zak.hoaxify.User.User;
+import com.zak.hoaxify.User.UserRepository;
+import com.zak.hoaxify.User.UserService;
 import org.assertj.core.api.Assertions;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +27,19 @@ public class LoginControllerTest {
 
     @Autowired
     TestRestTemplate testRestTemplate;
+
+    @Autowired
+    UserRepository userRepository;
+
+    @Autowired
+    UserService userService;
+
+    @Before
+    public void cleanUp() {
+        userRepository.deleteAll();
+        testRestTemplate.getRestTemplate().getInterceptors().clear();
+    }
+
 
     @Test
     public void postLogin_withoutUserCredentials_receiveUnauthorized(){
@@ -56,6 +73,16 @@ public class LoginControllerTest {
         ResponseEntity<Object> response = login(Object.class);
         Assertions.assertThat(response.getHeaders().containsKey("WWW-Authenticate")).isFalse();
     }
+    @Test
+    public void postLogin_WithValidCredentials_receiveOk(){
+        User user = TestUtil.createValidUser();
+
+        userService.save(user);
+        authenticate();
+        ResponseEntity<Object> response = login(Object.class);
+        Assertions.assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
+    }
+
 
     private void authenticate() {
         testRestTemplate.getRestTemplate().getInterceptors().add(new BasicAuthenticationInterceptor("test-user","P4ssword"));

@@ -9,6 +9,7 @@ public class TestUtil {
         user.setUsername("test-user");
         user.setDisplayName("test-dispaly");
         user.setPassword("P4ssword");
+        user.setImage("profile-image.png");
         return user;
     }
 
